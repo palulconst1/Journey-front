@@ -1,0 +1,44 @@
+.my_button {
+  width: 9%;
+  height: auto;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  background: #b71540;
+  color: white; 
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.my_button:hover {
+  background: #eb2f06;
+}
+
+.price {
+  color:blue;
+  float:right;
+}
+
+.buy {
+  float:right;
+  width: 30%;
+  height: auto;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  background: green;
+  color: white; 
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.buy:hover {
+  background: rgb(49, 143, 49);
+}
+
+.grid {
+  display: flex;
+  align-items: left;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin-top: 3rem;
+}

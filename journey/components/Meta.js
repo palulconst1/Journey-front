@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import 'bootstrap/dist/css/bootstrap.css'
 
 const Meta = ({ title, keywords, description }) => {
   return (

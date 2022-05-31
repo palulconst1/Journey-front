@@ -2,7 +2,7 @@ import Link from "next/link";
 import landmarkStyles from "../styles/Landmark.module.css";
 import TicketList from "./TicketList";
 
-const LandmarkItem = ({ landmark }) => {
+const LandmarkProfile = ({ landmark }) => {
     return (
         <Link href={`/landmark/${landmark.id}`}>
             <div className={landmarkStyles.card}>
@@ -15,4 +15,4 @@ const LandmarkItem = ({ landmark }) => {
     );
 };
 
-export default LandmarkItem;
+export default LandmarkProfile;

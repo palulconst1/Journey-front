@@ -1,13 +1,21 @@
 import { server } from '../../../config'
 import Link from 'next/link'
 import Meta from '../../../components/Meta'
+import TicketList from '../../../components/TicketList'
 
-const landmark = ({ landmark }) => {
+const landmark = ({ landmark, tickets }) => {
 
   return (
     <>
       <Meta title={landmark.name}/>
-      <h1>{landmark.name}</h1>
+      <h1 className="mb-2">{landmark.name}</h1>
+      <h5 className="mb-5">Program: {landmark.openHour} - {landmark.closeHour} </h5>
+      <div className="card mx-5">
+  <div className="card-body">
+    <p className="card-text">{landmark.description}</p>
+  </div>
+</div>
+      <TicketList tickets={tickets} />
     </>
   )
 }
@@ -17,9 +25,14 @@ export const getStaticProps = async (context) => {
 
   const landmark = await res.json()
 
+  const res2 = await fetch(`${server}/tickets/${context.params.id}`)
+
+  const tickets = await res2.json()
+
   return {
     props: {
       landmark,
+      tickets,
     },
   }
 }

@@ -11,6 +11,12 @@ const Nav = () => {
         <li>
           <Link href='/landmarks'>Landmarks</Link>
         </li>
+        <li>
+          <Link href='/landmarkProfile'>Landmark Profile</Link>
+        </li>
+        <li>
+          <Link href='/login'>Login</Link>
+        </li>
       </ul>
     </nav>
   )
