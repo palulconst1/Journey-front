@@ -1,36 +1,38 @@
 import { server } from "../config";
 import loginStyles from "../styles/Login.module.css";
+import { Col, Image, Card, Row, Form } from "react-bootstrap";
 
 export default function Login() {
     return (
-        <div className="row">
-            <div className="col">
+        <Row className="mt-4">
+            <Col className="" xl="1" />
+            <Col className="" xl="4">
                 <div className={loginStyles.card}>
                     <h4 className="titlu">Log in</h4>
-                    <form>
-                        <div className="form-outline mb-4">
-                            <input
+                    <Form>
+                        <Form.Group className="form-outline mb-4">
+                            <Form.Control
                                 type="email"
                                 id="form2Example1"
                                 className="form-control"
                                 placeholder="email"
                             />
-                        </div>
+                        </Form.Group>
 
-                        <div className="form-outline mb-4">
-                            <input
+                        <Form.Group className="form-outline mb-4">
+                            <Form.Control
                                 type="password"
                                 id="form2Example2"
                                 className="form-control"
                                 placeholder="password"
                             />
-                        </div>
+                        </Form.Group>
 
-                        <div className="row mb-4">
+                        <Row className="row mb-4">
                             <div className="col d-flex justify-content-center">
                                 <a href="#!">Forgot password?</a>
                             </div>
-                        </div>
+                        </Row>
 
                         <button
                             type="button"
@@ -38,46 +40,46 @@ export default function Login() {
                         >
                             Sign in
                         </button>
-                    </form>
+                    </Form>
                 </div>
-            </div>
-
-            <div className="col">
+            </Col>
+            <Col className="" xl="1" />
+            <Col className="" xl="4">
                 <div className={loginStyles.card}>
-                <h4 className="titlu">Register</h4>
-                    <form>
-                        <div className="form-outline mb-4">
-                            <input
+                    <h4 className="titlu">Register</h4>
+                    <Form>
+                        <Form.Group className="form-outline mb-4">
+                            <Form.Control
                                 type="email"
                                 id="form2Example1"
                                 className="form-control"
                                 placeholder="email"
                             />
-                        </div>
+                        </Form.Group>
 
-                        <div className="form-outline mb-4">
-                            <input
+                        <Form.Group className="form-outline mb-4">
+                            <Form.Control
                                 type="password"
                                 id="form2Example2"
                                 className="form-control"
                                 placeholder="password"
                             />
-                        </div>
-                        <div className="form-outline mb-4">
-                            <input
+                        </Form.Group>
+                        <Form.Group className="form-outline mb-4">
+                            <Form.Control
                                 id="form2Example1"
                                 className="form-control"
                                 placeholder="Prenume"
                             />
-                        </div>
-                        <div className="form-outline mb-4">
-                            <input
+                        </Form.Group>
+                        <Form.Group className="form-outline mb-4">
+                            <Form.Control
                                 type="email"
                                 id="form2Example1"
                                 className="form-control"
                                 placeholder="Nume"
                             />
-                        </div>
+                        </Form.Group>
 
                         <button
                             type="button"
@@ -85,9 +87,9 @@ export default function Login() {
                         >
                             Sign up
                         </button>
-                    </form>
+                    </Form>
                 </div>
-            </div>
-        </div>
+            </Col>
+        </Row>
     );
 }

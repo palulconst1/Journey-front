@@ -1,12 +1,14 @@
 import Link from "next/link";
 import ticketStyle from "../styles/Ticket.module.css";
 import { useState } from "react";
+import { Col, Image, Card, Row } from "react-bootstrap";
 
 const TicketItem = ({ ticket }) => {
     const [counter, setCounter] = useState(1);
     return (
-        <div className="card mx-2 my-2">
-            <div className="card-body">
+        <Col xl = "3" className = "d-flex justify-content-center" >
+        <Card className=" my-2">
+            <Card.Body className="">
                 <h5 className="card-title">
                     <span>{ticket.name}</span>
                     <span className={ticketStyle.price}>
@@ -47,8 +49,9 @@ const TicketItem = ({ ticket }) => {
                         Adauga
                     </button>
                 </div>
-            </div>
-        </div>
+            </Card.Body>
+        </Card>
+        </Col>
     );
 };
 

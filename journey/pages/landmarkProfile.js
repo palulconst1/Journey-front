@@ -9,13 +9,24 @@ export default function Landmarks({ landmark }) {
   )
 }
 
-export const getStaticProps = async () => {
-    const res = await fetch(`${server}/landmark/status`)
-    const landmark = await res.json()
+// export const getStaticProps = async () => {
+//     try {
+//       const res = await axios.get(
+//         `${server}/landmark/status`,
+//           {
+//               headers: {
+//                   Authorization: `${req.headers.authorization}`,
+//               },
+//           }
+//       );
+//       const landmark = await res.json()
+//       return {
+//         props: {
+//           landmark
+//         },
+//       }
+//   } catch (error) {
+//       return error;
+//   }
   
-    return {
-      props: {
-        landmark,
-      },
-    }
-  }
+// }
