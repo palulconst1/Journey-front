@@ -1,32 +1,13 @@
 import { server } from '../config'
 import LandmarkProfile from '../components/LandmarkProfile'
+import { useHookstate } from "@hookstate/core";
+import { landmarkState } from "./_app";
 
-export default function Landmarks({ landmark }) {
+export default function LandmarksProfile() {
+
   return (
     <div>
-        <LandmarkProfile landmark={landmark} />
+        <LandmarkProfile  />
     </div>
   )
 }
-
-// export const getStaticProps = async () => {
-//     try {
-//       const res = await axios.get(
-//         `${server}/landmark/status`,
-//           {
-//               headers: {
-//                   Authorization: `${req.headers.authorization}`,
-//               },
-//           }
-//       );
-//       const landmark = await res.json()
-//       return {
-//         props: {
-//           landmark
-//         },
-//       }
-//   } catch (error) {
-//       return error;
-//   }
-  
-// }

@@ -1,0 +1,20 @@
+import { server } from '../config';
+import UserProfile from '../components/UserProfile';
+import ResetPassword from '../components/ResetPassword';
+import SendResetPassword from '../components/SendResetPassword';
+import VerifyUser from '../components/VerifyUser';
+import { useHookstate } from "@hookstate/core";
+import { userState } from "./_app";
+import { useEffect } from 'react';
+
+export default function UsersProfile() {
+  return (
+    <div className='d-flex justify-content-center mt-4'>
+        <UserProfile />
+        <ResetPassword />
+        <VerifyUser />
+        <SendResetPassword />
+    </div>
+  )
+}
+
