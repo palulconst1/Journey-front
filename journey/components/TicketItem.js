@@ -6,7 +6,7 @@ import { Col, Image, Card, Row } from "react-bootstrap";
 const TicketItem = ({ ticket }) => {
     const [counter, setCounter] = useState(1);
     return (
-        <Col xl = "3" className = "d-flex justify-content-center" >
+        <Col xl = "2" className = "mt-4" >
         <Card className=" my-2">
             <Card.Body className="">
                 <h5 className="card-title">

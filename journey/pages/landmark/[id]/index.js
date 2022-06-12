@@ -18,15 +18,14 @@ const landmark = ({ landmark, tickets }) => {
                 </Row>
             </Card.Header>
             <Card.Body>
-              <Row>
-              <Col xl = '2' />
-              <Col xl = '8' >
+            <Row>
+            <Col xl = "6" className= "" >
+            <CarouselList photos = {[1, 2, 3]} />
+            </Col>
+            <Col xl = '6' >
                 <Card.Text className="">{landmark.description}</Card.Text>
                 </Col>
-                <Col xl = '2' />
-                </Row>
-
-            <CarouselList photos = {[1, 2, 3]} />
+            </Row>
 
             <TicketList tickets={tickets} />
             </Card.Body>

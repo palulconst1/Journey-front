@@ -3,12 +3,11 @@ import { Container, Row, Carousel } from 'react-bootstrap'
 
 const CarouselList = ({ photos }) => {
   return (
-    <Carousel>
-        carusel
+    <Row>
       {photos.map((photo) => (
         <CarouselItem photo={photo} className="" />
       ))}
-    </Carousel>
+    </Row>
   )
 }
 

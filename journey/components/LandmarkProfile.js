@@ -1,12 +1,14 @@
 import Link from "next/link";
 import landmarkStyles from "../styles/Landmark.module.css";
-import TicketList from "./TicketList";
-import { useState } from "react";
+import TicketListOwn from "./TicketListOwn";
+import { useEffect, useState } from "react";
 import { Col, Image, Card, Row, Container, Form } from "react-bootstrap";
 import CarouselList from "./CarouselList";
 import { landmarkState, authState } from "../pages/_app";
 import { useHookstate } from "@hookstate/core";
 import axios from "axios";
+import { server } from "../config";
+import { useRouter } from "next/router";
 
 const LandmarkProfile = () => {
     const auth = useHookstate(authState).get();
@@ -16,6 +18,26 @@ const LandmarkProfile = () => {
     const [open, setOpen] = useState(landmark.openHour);
     const [close, setClose] = useState(landmark.closeHour);
     const [city, setCity] = useState(landmark.city);
+
+    const router = useRouter();
+
+    const [tickets, setTickets] = useState([]);
+
+    const [madeTicketRequest, setMadeTicketRequest] = useState(false);
+
+    useEffect(async () => {
+        if (!madeTicketRequest) {
+            madeTicketRequest = true;
+            
+            const res2 = await fetch(`${server}/tickets/${landmark._id}`);
+        
+            const fetchedTickets = await res2.json();
+
+            if (fetchedTickets) {
+                setTickets(fetchedTickets);
+            }
+        }
+    }, [madeTicketRequest]);
     
     const handleSave= async (e) => {
         e.stopPropagation();
@@ -27,8 +49,8 @@ const LandmarkProfile = () => {
                 {
                     name: nume,
                     description: description,
-                    // openHour: open,
-                    // closeHour: close,
+                    openHour: open,
+                    closeHour: close,
                     city: city,
                 },{ 
                 headers: {
@@ -38,8 +60,8 @@ const LandmarkProfile = () => {
             landmarkState.set({
                 name: nume,
                     description: description,
-                    // openHour: open,
-                    // closeHour: close,
+                    openHour: open,
+                    closeHour: close,
                     city: city,
             });
 
@@ -53,9 +75,10 @@ const LandmarkProfile = () => {
         <Card>
             <Card.Body>
                 <Row className="mt-4">
-                    <Col xl="5" className="">
-                        <CarouselList photos={[1, 2, 3, 4]} />
-                        <Row>
+                <Col xl = "1" />
+                    <Col xl="6" className="">
+                        <CarouselList photos={[1, 2, 3]} />
+                        <Row className = "mt-4" >
                             <Col xl="1" className="" />
                             <Col xl="4">
                                 <input type="file" className="form-control" id="" />
@@ -63,9 +86,6 @@ const LandmarkProfile = () => {
                                     <button
                                         className="btn btn-primary"
                                         type="submit"
-                                        onClick={(data) => {
-                                            console.log(data);
-                                        }}
                                     >
                                         Upload
                                     </button>
@@ -73,7 +93,7 @@ const LandmarkProfile = () => {
                             </Col>
                         </Row>
                     </Col>
-
+                    <Col xl = "1" />
                     <Col className="" xl="3">
                         <Form onSubmit= {(e) => handleSave(e)}>
                             <Form.Group>
@@ -105,14 +125,22 @@ const LandmarkProfile = () => {
                                 <Col className="">
                                     <Form.Label>Deschidere</Form.Label>
                                     <div className="my-2">
-                                        <input type="time" name="box1" 
+                                        <input type="time" name="box1"
+                                         value={open}
+                                         onChange={(e) => {
+                                             setOpen(e.target.value);
+                                         }}
                                         />
                                     </div>
                                 </Col>
                                 <Col className="">
                                     <Form.Label>Inchidere</Form.Label>
                                     <div className="my-2">
-                                        <input type="time" />
+                                        <input type="time" 
+                                        value={close}
+                                        onChange={(e) => {
+                                            setClose(e.target.value);
+                                        }} />
                                     </div>
                                 </Col>
                             </Row>
@@ -126,10 +154,26 @@ const LandmarkProfile = () => {
                             </div>
                         </Form>
                     </Col>
+                    <Col xl = "1" />
                 </Row>
+                <TicketListOwn tickets={tickets} />
+                <Col xl = "4">
+                <div className="d-grid gap-2 my-4 ">
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                        router.push(`/ticket/create`);
+                                    }}
+                                >
+                                    Adauga Bilet
+                                </button>
+                            </div>
+                            </Col>
             </Card.Body>
         </Card>
     );
 };
+
+
 
 export default LandmarkProfile;
