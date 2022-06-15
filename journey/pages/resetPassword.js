@@ -7,10 +7,10 @@ import { useHookstate } from "@hookstate/core";
 import { userState } from "./_app";
 import { useEffect } from 'react';
 
-export default function UsersProfile() {
+export default function resetPassword() {
   return (
     <div className='d-flex justify-content-center mt-4'>
-        <UserProfile />
+        <ResetPassword />
     </div>
   )
 }

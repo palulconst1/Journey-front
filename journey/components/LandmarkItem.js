@@ -14,7 +14,7 @@ const LandmarkItem = ({ landmark }) => {
                     <Row>
                         <h5>{landmark.name}
                         </h5>
-                        <div> Bucuresti
+                        <div> {landmark.city}
                         </div>
                         </Row>
                     </Col>
