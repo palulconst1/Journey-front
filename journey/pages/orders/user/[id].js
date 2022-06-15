@@ -1,9 +1,9 @@
-import { server } from "../../config";
-import Meta from "../../components/Meta";
+import { server } from "../../../config";
+import Meta from "../../../components/Meta";
 import { Col, Image, Card, Row, Carousel } from "react-bootstrap";
-import TicketUpdate from "../../components/TicketUpdate";
+import TicketUpdate from "../../../components/TicketUpdate";
 import axios from "axios";
-import { authState } from "../_app";
+import { authState } from "../../_app";
 import { useHookstate } from "@hookstate/core";
 
 export default function Ticket({ order }) {
@@ -18,6 +18,8 @@ export default function Ticket({ order }) {
 };
 
 export const getServerSideProps = async (context) => {
+
+    
 
     const res = await axios.get(
         "http://localhost:5000/order/user/" + context.params.id,{ 

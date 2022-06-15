@@ -36,11 +36,13 @@ const CarouselItemOwn = React.forwardRef((photo, ref) => {
     return (
         <Col>
             <Image className="d-block w-100" src={photo.photo} alt="First" />
+            <Col xl = "3">
             <div className="d-grid gap-2 my-4 ">
                 <button className="btn btn-danger" type="submit" onClick={() => handleDelete(photo.photo)} >
                     delete
                 </button>
             </div>
+            </Col>
         </Col>
     );
 });

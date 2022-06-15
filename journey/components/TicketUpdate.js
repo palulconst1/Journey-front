@@ -77,7 +77,7 @@ const TicketUpdate = (ticket) => {
                             </Form.Group>
                             
                             <Form.Group>
-                                <Form.Label>Descriere</Form.Label>
+                                <Form.Label>Pret</Form.Label>
                                 <Form.Control
                                 value={price}
                                 type = "number"
