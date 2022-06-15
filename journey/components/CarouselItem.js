@@ -2,14 +2,14 @@ import { Col, Image, Card, Row, Carousel } from 'react-bootstrap';
 import React from "react";
 
 
-const CarouselItem = React.forwardRef((props, ref) => {
-
+const CarouselItem = React.forwardRef((photo, ref) => {
+    console.log("photo", photo.photo)
     return (
         <Col>
         <Image
           className="d-block w-100"
-          src="/testTest.jpg"
-          alt="First slide"
+          src={`../${photo.photo}`}
+          alt="slide"
         />
       </Col>
     );

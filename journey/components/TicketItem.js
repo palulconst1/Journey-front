@@ -2,9 +2,27 @@ import Link from "next/link";
 import ticketStyle from "../styles/Ticket.module.css";
 import { useState } from "react";
 import { Col, Image, Card, Row } from "react-bootstrap";
+import { cartState } from "../pages/_app";
+import { useHookstate } from "@hookstate/core";
 
 const TicketItem = ({ ticket }) => {
     const [counter, setCounter] = useState(1);
+    const cart = useHookstate(cartState);
+
+    const handleBuy = (counter, id) => {
+        const l = JSON.parse(JSON.stringify(cart.get()))
+        if (l) {
+            console.log(l);
+            l.push({
+                id: id,
+                quantity: counter
+            })
+            cart.set(l);
+            console.log(cart.get())
+        }
+        
+    }
+
     return (
         <Col xl = "2" className = "mt-4" >
         <Card className=" my-2">
@@ -42,8 +60,9 @@ const TicketItem = ({ ticket }) => {
                     <button
                         className={ticketStyle.buy}
                         onClick={() => {
-                            console.log("Ai adaugat", counter, "bilete de tipul", ticket.name)
+                            console.log("Ai adaugat", counter, "bilete de tipul", ticket._id)
                             setCounter(0)
+                            handleBuy(counter, ticket._id)
                         }}
                     >
                         Adauga

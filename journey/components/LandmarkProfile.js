@@ -3,12 +3,13 @@ import landmarkStyles from "../styles/Landmark.module.css";
 import TicketListOwn from "./TicketListOwn";
 import { useEffect, useState } from "react";
 import { Col, Image, Card, Row, Container, Form } from "react-bootstrap";
-import CarouselList from "./CarouselList";
+import CarouselListOwn from "./CarouselListOwn";
 import { landmarkState, authState } from "../pages/_app";
 import { useHookstate } from "@hookstate/core";
 import axios from "axios";
 import { server } from "../config";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 
 const LandmarkProfile = () => {
     const auth = useHookstate(authState).get();
@@ -18,7 +19,8 @@ const LandmarkProfile = () => {
     const [open, setOpen] = useState(landmark.openHour);
     const [close, setClose] = useState(landmark.closeHour);
     const [city, setCity] = useState(landmark.city);
-
+    const [photos, setPhotos] = useState(landmark.picture);
+    
     const router = useRouter();
 
     const [tickets, setTickets] = useState([]);
@@ -65,11 +67,68 @@ const LandmarkProfile = () => {
                     city: city,
             });
 
-            window.location.href = "/";
+            // window.location.href = "/";
         } catch (error) {
             console.error(error)
         }
     };
+
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+    }
+
+    const [file, setFile] = useState(null);
+
+    const handleFile = async (e) => {
+        setFile(e.target.files[0]);
+        const currentPhotos = JSON.parse(JSON.stringify(photos));
+
+        const bodyFormData = new FormData();
+        bodyFormData.append("file", e.target.files[0]);
+
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/upload",
+                bodyFormData, { 
+                headers: {
+                    "Authorization": auth.jwt,
+                    "Content-Type": "multipart/form-data"
+                  }}
+            );
+
+            const numeFile = response.data.fileName
+            currentPhotos.push(numeFile)
+            setPhotos(currentPhotos)
+
+            // window.location.href = "/";
+        } catch (error) {
+            console.error(error)
+        }
+
+        try {
+            const response2 = await axios.put(
+                "http://localhost:5000/landmark",
+                {
+                    picture: currentPhotos
+                }, { 
+                headers: {
+                    "Authorization": auth.jwt,
+                  }}
+            );
+
+            landmarkState.set({
+                picture: photos
+            });
+
+            // window.location.href = "/";
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
 
     return (
         <Card>
@@ -77,11 +136,13 @@ const LandmarkProfile = () => {
                 <Row className="mt-4">
                 <Col xl = "1" />
                     <Col xl="6" className="">
-                        <CarouselList photos={[1, 2, 3]} />
+                        <CarouselListOwn photos={photos} />
                         <Row className = "mt-4" >
                             <Col xl="1" className="" />
                             <Col xl="4">
-                                <input type="file" className="form-control" id="" />
+                                <Form onSubmit={handleSubmit} >
+                                <input name="picture" type="file" className="form-control" onChange={handleFile}
+                                 />
                                 <div className="d-grid gap-2 my-4 ">
                                     <button
                                         className="btn btn-primary"
@@ -90,6 +151,7 @@ const LandmarkProfile = () => {
                                         Upload
                                     </button>
                                 </div>
+                                </Form>
                             </Col>
                         </Row>
                     </Col>

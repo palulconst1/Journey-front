@@ -20,7 +20,7 @@ const landmark = ({ landmark, tickets }) => {
             <Card.Body>
             <Row>
             <Col xl = "6" className= "" >
-            <CarouselList photos = {[1, 2, 3]} />
+            <CarouselList photos = {landmark.picture} />
             </Col>
             <Col xl = '6' >
                 <Card.Text className="">{landmark.description}</Card.Text>

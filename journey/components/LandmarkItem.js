@@ -7,7 +7,7 @@ const LandmarkItem = ({ landmark }) => {
         <Col xl = '4' className=" my-2">
         <Link href={`/landmark/${landmark.id}`} className="">
             <Card className = {landmarkStyles.landElem}>
-                <Image className="" src="testTest.jpg" height= '200' width = '100%' />
+                <Image className="" src={landmark.picture[0]} height= '200' width = '100%' />
                 <Card.Body>
                     <Row>
                         <Col>

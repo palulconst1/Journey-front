@@ -6,7 +6,7 @@ import { Persistence } from "@hookstate/persistence";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const globalState = createState([]);
+const cartState = createState([]);
 const authState = createState({
     jwt: "",
     loggedIn: false,
@@ -35,7 +35,7 @@ const landmarkState  = createState({
 })
 
 if (typeof window !== "undefined") {
-  globalState.attach(Persistence("cart"));
+  cartState.attach(Persistence("cart"));
   authState.attach(Persistence("auth"));
   userState.attach(Persistence("user"));
   landmarkState.attach(Persistence("landmark"));
@@ -100,4 +100,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
-export {authState, userState, landmarkState};
+export {authState, userState, landmarkState, cartState};

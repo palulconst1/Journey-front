@@ -6,10 +6,11 @@ import axios from "axios";
 import { authState } from "../_app";
 import { useHookstate } from "@hookstate/core";
 
-export default function Ticket({ ticket }) {
+export default function Ticket({ order }) {
     return (
         <Card>
-            <Meta title={ticket.name} />
+            <Meta title={order.total} />
+            Comanda ta
 
            
         </Card>
@@ -17,9 +18,9 @@ export default function Ticket({ ticket }) {
 };
 
 export const getServerSideProps = async (context) => {
-    const auth = useHookstate(authState).get();
+
     const res = await axios.get(
-        "http://localhost:5000/orders/user/" + context.params.id,{ 
+        "http://localhost:5000/order/user/" + context.params.id,{ 
         headers: {
             "Authorization": auth.jwt
           }}

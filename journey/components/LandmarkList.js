@@ -3,6 +3,7 @@ import landmarkStyles from '../styles/Landmark.module.css'
 import { Container, Row } from 'react-bootstrap'
 
 const LandmarkList = ({ landmarks }) => {
+  console.log("::::::::",landmarks)
   return (
     <Container>
       <Row className='my-4'>
