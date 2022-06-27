@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Col, Image, Card, Row, Container, Form } from "react-bootstrap";
 import axios from "axios";
-import { userState, authState, landmarkState } from "../pages/_app";
+import { userState, authState, landmarkState, cartState } from "../pages/_app";
 import { useHookstate } from "@hookstate/core";
 
 const Logout = ( ) => {
@@ -10,6 +10,7 @@ const Logout = ( ) => {
     const auth = useHookstate(authState);
     const user = useHookstate(userState);
     const landmark = useHookstate(landmarkState);
+    const cart = useHookstate(cartState);
 
     const handleLogout= async (e) => {
         e.stopPropagation();
@@ -40,6 +41,8 @@ const Logout = ( ) => {
                 loggedIn: false,
                 tip: "",
             });
+
+            cart.set([]);
 
             window.location.href = "/";
         } catch (error) {

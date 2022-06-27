@@ -4,12 +4,13 @@ import { Col, Image, Card, Row, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { useHookstate } from "@hookstate/core";
-import { authState } from "./_app";
+import { authState, cartState } from "./_app";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const loginState = useHookstate(authState);
+    const cart = useHookstate(cartState);
 
     const [usernameR, setUsernameR] = useState("");
     const [passwordR, setPasswordR] = useState("");
@@ -53,6 +54,8 @@ export default function Login() {
                 loggedIn: true,
                 tip: "landmark",
             });
+
+            cart.set([]);
 
             window.location.href = "/";
         } catch (error) {

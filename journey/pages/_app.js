@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const cartState = createState([]);
+const currentLandmarkState = createState({
+  _id: "",
+});
 const authState = createState({
     jwt: "",
     loggedIn: false,
@@ -100,4 +103,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
-export {authState, userState, landmarkState, cartState};
+export {authState, userState, landmarkState, cartState, currentLandmarkState};

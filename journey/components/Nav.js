@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import navStyles from '../styles/Nav.module.css';
-import { landmarkState, authState } from "../pages/_app";
+import { userState, authState, landmarkState, cartState, currentLandmarkState } from "../pages/_app";
 import { useHookstate } from "@hookstate/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -9,6 +9,11 @@ import {Button} from "react-bootstrap";
 const Nav = () => {
 
   const auth = useHookstate(authState);
+  const userSt = useHookstate(userState);
+  const landmarkSt = useHookstate(landmarkState);
+  const cart = useHookstate(cartState);
+  const prev = useHookstate(currentLandmarkState);
+
   const [user, setUser] = useState(false);
   const [landmark, setLandmark] = useState(false);
 
@@ -47,19 +52,40 @@ const Nav = () => {
         <li hidden = {!user} className="" >
           <Link href='/cart'>Cos</Link>
         </li>
-        <li hidden = {!user && !landmark} style={{
-          float: "right"
-        }}  >
+        <li hidden = {!user && !landmark} >
           <Button onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
     
             try {
-                auth.set({
-                    jwt: "",
-                    loggedIn: false,
-                    tip: "",
-                });
+              userSt.set({
+                _id: "",
+                firstName: "",
+                lastName: "",
+                verified: false,
+                verifyCode: "",
+                orders: [],
+            });
+
+            landmarkSt.set({
+                _id: "",
+                name: "",
+                description: "",
+                openHour: "",
+                closeHour: "",
+                tickets: [],
+                orders: [],
+            });
+
+            auth.set({
+                jwt: "",
+                loggedIn: false,
+                tip: "",
+            });
+
+            cart.set([]);
+
+            prev.set({_id:""})
     
                 window.location.href = "/";
             } catch (error) {
