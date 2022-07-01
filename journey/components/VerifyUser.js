@@ -16,13 +16,9 @@ const VerifyUser = ( ) => {
         try {
             const response = await axios.post(
                 "http://localhost:5000/user/verify/" + cod, {},
-                { 
-                headers: {
-                    "Authorization": auth.jwt
-                  }}
             );
 
-            window.location.href = "/";
+            window.location.href = "/login";
         } catch (error) {
             console.error(error)
         }

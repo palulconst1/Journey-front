@@ -10,7 +10,6 @@ const OrderItem = ({ order }) => {
     const [nume, setNume] = useState("");
     const auth = useHookstate(authState).get();
 
-    console.log(order)
 
     useEffect(async () => {
         if (auth.tip === "user") {

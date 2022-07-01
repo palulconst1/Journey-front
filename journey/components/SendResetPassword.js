@@ -18,23 +18,23 @@ const SendResetPassword = ( ) => {
                 },
             );
 
-            window.location.href = "/";
+            window.location.href = "/resetPassword";
         } catch (error) {
             console.error(error)
         }
 
-        try {
-            const response = await axios.post(
-                "http://localhost:5000/landmark/password/reset",
-                {
-                    email: username
-                },
-            );
+        // try {
+        //     const response = await axios.post(
+        //         "http://localhost:5000/landmark/password/reset",
+        //         {
+        //             email: username
+        //         },
+        //     );
 
-            window.location.href = "/";
-        } catch (error) {
-            console.error(error)
-        }
+        //     window.location.href = "/login";
+        // } catch (error) {
+        //     console.error(error)
+        // }
     };
 
     return (

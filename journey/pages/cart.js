@@ -13,21 +13,35 @@ const cart = () => {
     const curentLandmark = useHookstate(currentLandmarkState).get();
     const auth = useHookstate(authState).get();
     const [total, setTotal] = useState(0);
+    const [bilete, setBilete] = useState([]);
+    const [obiectiv, setObiectiv] = useState();
+
     useEffect(async () => {
+        const l = [];
         const sum = 0;
 
         for (const ticket of tickets) {
             const res = await fetch(`${server}/ticket/${ticket.id}`);
 
             const ticketReceived = await res.json();
-            console.log(ticketReceived);
+            l.push([ticketReceived, ticket.quantity])
+            
 
             if (ticketReceived) {
                 sum += ticket.quantity * ticketReceived.price;
                 // setTotal(total + ticket.quantity*ticketReceived.price)
             }
+
+        const res2 = await fetch(`${server}/landmark/${curentLandmark._id}`);
+
+        const lndm = await res2.json();
+
+        if (lndm) {
+            setObiectiv(lndm.name);
         }
 
+        }
+        setBilete(l)
         setTotal(sum);
     }, [tickets.length]);
 
@@ -41,7 +55,6 @@ const cart = () => {
             })
         }
 
-        console.log("test", cart, curentLandmark._id)
 
         try {
             const response = await axios.post(
@@ -76,7 +89,7 @@ const cart = () => {
                 <Col xl="6" className="border border-primary ">
                     <Row className="mt-2">
                         <Col xl="5" className="">
-                            <CartItemList tickets={tickets} />
+                            <CartItemList tickets={bilete} obiectiv = {obiectiv} />
                         </Col>
                         <Col xl="5" />
                         <Col xl="2">
@@ -87,7 +100,6 @@ const cart = () => {
                                     const cart = JSON.parse(
                                         JSON.stringify(tickets)
                                     );
-                                    console.log(cart);
                                     handleBuy(cart);
                                 }}
                             >

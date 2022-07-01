@@ -2,42 +2,44 @@ import Link from "next/link";
 import ticketStyle from "../styles/Ticket.module.css";
 import { useState } from "react";
 import { Col, Image, Card, Row } from "react-bootstrap";
-import { cartState, currentLandmarkState } from "../pages/_app";
+import { cartState, currentLandmarkState, authState } from "../pages/_app";
 import { useHookstate } from "@hookstate/core";
 
 const TicketItem = ({ ticket }) => {
     const [counter, setCounter] = useState(1);
     const cart = useHookstate(cartState);
     const previousShop = useHookstate(currentLandmarkState);
+    const auth = useHookstate(authState).get();
 
     const handleBuy = (counter, id, landmark) => {
+        if(auth.tip === "user") {
         const l = JSON.parse(JSON.stringify(cart.get()));
         if (previousShop._id.get()) {
             if (previousShop._id.get() != landmark) {
                 alert("Alt obiectiv");
             } else {
                 if (l) {
-                    console.log(l);
                     l.push({
                         id: id,
                         quantity: counter,
                     });
                     cart.set(l);
-                    console.log(cart.get());
                 }
             }
         } else {
             previousShop.set({_id: landmark})
             if (l) {
-                console.log(l);
                 l.push({
                     id: id,
                     quantity: counter,
                 });
                 cart.set(l);
-                console.log(cart.get());
             }
         }
+    }
+    else {
+        alert("Trebuie sa te inregistrezi!");
+    }
     };
 
     return (

@@ -201,7 +201,6 @@ const LandmarkProfile = () => {
                                         <input type="time" 
                                         value={close}
                                         onChange={(e) => {
-                                            console.log(e.target.value)
                                             setClose(e.target.value);
                                         }} />
                                     </div>

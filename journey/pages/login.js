@@ -78,14 +78,16 @@ export default function Login() {
                 }
             );
 
-            const res = await axios.get(
+            console.log(response)
+
+            const res = await axios.post(
                 "http://localhost:5000/user/verify",
                 {
-                    email: usernameR
+                    email: response.data.email
                 }
             );
-
-            window.location.href = "/";
+            console.log("done")
+            window.location.href = "/verifyUser";
         } catch (error) {
             console.error(error)
         }
@@ -126,7 +128,7 @@ export default function Login() {
 
                         <Row className="row mb-4">
                             <div className="col d-flex justify-content-center">
-                                <a href="#!">Forgot password?</a>
+                                <a href="/forgotPassword">Forgot password?</a>
                             </div>
                         </Row>
 

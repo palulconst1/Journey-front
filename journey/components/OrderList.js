@@ -29,7 +29,6 @@ const OrderList = () => {
         );
 
         const ordersRe = res.data;
-        console.log(ordersRe)
         setOrders(ordersRe);
     }, []);
 

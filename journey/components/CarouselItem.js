@@ -3,7 +3,6 @@ import React from "react";
 
 
 const CarouselItem = React.forwardRef((photo, ref) => {
-    console.log("photo", photo.photo)
     return (
         <Col>
         <Image
