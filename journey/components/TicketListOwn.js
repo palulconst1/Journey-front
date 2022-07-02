@@ -6,8 +6,8 @@ import { server } from '../config';
 
 const TicketListOwn = ({ tickets }) => {
   return (
-    <Row className="">
-      {tickets.map((ticket) => {
+    <Row className="mx-4">
+      {tickets && tickets.map((ticket) => {
         return (<TicketItemOwn ticket={ticket} />)
         })}
     </Row>

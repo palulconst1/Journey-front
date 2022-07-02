@@ -27,7 +27,7 @@ const TicketCreate = () => {
                   }}
             );
 
-            window.location.href = "/";
+            window.location.href = "/landmarkProfile";
         } catch (error) {
             console.error(error)
         }

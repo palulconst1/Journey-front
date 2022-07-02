@@ -27,7 +27,7 @@ const TicketUpdate = (ticket) => {
                   }}
             );
 
-            window.location.href = "/";
+            window.location.href = "/landmarkProfile";
         } catch (error) {
             console.error(error)
         }
@@ -45,7 +45,7 @@ const TicketUpdate = (ticket) => {
                   }}
             );
 
-            window.location.href = "/";
+            window.location.href = "/landmarkProfile";
         } catch (error) {
             console.error(error)
         }

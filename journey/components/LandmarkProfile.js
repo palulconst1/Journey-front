@@ -67,7 +67,7 @@ const LandmarkProfile = () => {
                     city: city,
             });
 
-            // window.location.href = "/";
+            window.location.href = "/";
         } catch (error) {
             console.error(error)
         }
@@ -201,6 +201,7 @@ const LandmarkProfile = () => {
                                         <input type="time" 
                                         value={close}
                                         onChange={(e) => {
+                                            console.log(e.target.value)
                                             setClose(e.target.value);
                                         }} />
                                     </div>
@@ -219,7 +220,7 @@ const LandmarkProfile = () => {
                     <Col xl = "1" />
                 </Row>
                 <TicketListOwn tickets={tickets} />
-                <Col xl = "2">
+                <Col xl = "2" className = "mx-4" >
                 <div className="d-grid gap-2 my-4 ">
                                 <button
                                     className="btn btn-primary"
